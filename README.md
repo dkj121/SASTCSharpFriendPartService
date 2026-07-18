@@ -1,0 +1,3 @@
+# SASTCSharpFriendPartService
+
+此代码仓库仅作为处理 SASTCSharpFriendPart 远程链接服务器使用
