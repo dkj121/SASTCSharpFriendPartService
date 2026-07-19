@@ -31,11 +31,10 @@ public static class FriendEndpoints
 			var affected = await db.Friend
 				.Where(model => model.Id == id)
 				.ExecuteUpdateAsync(setters => setters
-				.SetProperty(m => m.Id, friend.Id)
 				.SetProperty(m => m.Name, friend.Name)
 				.SetProperty(m => m.Email, friend.Email)
-				.SetProperty(m => m.Sessions, friend.Sessions)
-				.SetProperty(m => m.CreatedAt, friend.CreatedAt)
+				.SetProperty(m => m.Description, friend.Description)
+				.SetProperty(m => m.ImgUrl, friend.ImgUrl)
 				.SetProperty(m => m.UpdatedAt, friend.UpdatedAt)
 		);
 

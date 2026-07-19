@@ -13,9 +13,12 @@ public class Session
 	public int FriendId { get; set; }
 	[ForeignKey("FriendId")]
 	[Required]
-	public Friend Friend { get; set; }
+	public Friend Friend { get; set; } = default!;
 	[Required]
-	public List<ChatLog> ChatLogs { get; set; }
+	public string Title { get; set; } = string.Empty;
+	public string Content { get; set; } = string.Empty;
+	[Required]
+	public List<ChatLog> ChatLogs { get; set; } = [];
 	[Required]
 	public DateTime CreatedAt { get; set; }
 	[Required]
