@@ -7,13 +7,10 @@ using SASTCSharpFriendPartService.Hubs;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("FriendServiceContext");
 
-// 使用 SQL Server（优先）或 SQLite 作为数据库上下文
+// 使用 SQLite 作为数据库上下文
 builder.Services.AddDbContext<FriendServiceContext>(options =>
 {
-	if (!string.IsNullOrEmpty(connectionString))
-		options.UseSqlServer(connectionString);
-	else
-		options.UseSqlite("Data Source=FriendService.db");
+	options.UseSqlite("Data Source=FriendService.db");
 });
 
 // 设置 JSON 序列化选项以忽略循环引用
