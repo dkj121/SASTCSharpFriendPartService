@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SASTCSharpFriendPartService.Models;
 
+/// <summary>
+/// 表示一个会话（Session）实体，包含与朋友（Friend）相关的聊天记录（ChatLog）。
+/// </summary>
 [Table("Sessions")]
 public class Session
 {

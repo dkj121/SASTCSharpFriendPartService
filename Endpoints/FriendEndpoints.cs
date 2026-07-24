@@ -4,6 +4,14 @@ using SASTCSharpFriendPartService.Models;
 
 namespace SASTCSharpFriendPartService.Endpoints;
 
+/// <summary>
+/// 为 SASTCSharpFriendPartService 提供朋友（Friend）相关的 API 端点。
+/// Get：/api/Friend - 获取所有朋友
+/// Get：/api/Friend/{id} - 根据 ID 获取特定朋友
+/// Put：/api/Friend/{id} - 更新特定朋友
+/// Post：/api/Friend - 创建新的朋友
+/// Delete：/api/Friend/{id} - 删除特定朋友
+/// </summary>
 public static class FriendEndpoints
 {
 	public static void MapFriendEndpoints(this IEndpointRouteBuilder routes)

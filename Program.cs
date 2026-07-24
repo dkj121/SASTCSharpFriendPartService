@@ -7,7 +7,7 @@ using SASTCSharpFriendPartService.Hubs;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("FriendServiceContext");
 
-// Use SQL Server if connection string is configured, otherwise fall back to SQLite (easier for Docker/deployment)
+// 使用 SQL Server（优先）或 SQLite 作为数据库上下文
 builder.Services.AddDbContext<FriendServiceContext>(options =>
 {
 	if (!string.IsNullOrEmpty(connectionString))
@@ -16,11 +16,11 @@ builder.Services.AddDbContext<FriendServiceContext>(options =>
 		options.UseSqlite("Data Source=FriendService.db");
 });
 
-// JSON: ignore navigation cycles to prevent infinite serialization
+// 设置 JSON 序列化选项以忽略循环引用
 builder.Services.ConfigureHttpJsonOptions(options =>
 	options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-// CORS + SignalR: allow desktop clients from any origin
+// CORS + SignalR: 允许来自任何来源的请求，允许任何方法和头部，并允许凭据
 builder.Services.AddCors(options =>
 	options.AddDefaultPolicy(policy =>
 		policy.SetIsOriginAllowed(_ => true)
@@ -46,6 +46,7 @@ app.UseHttpsRedirection();
 
 app.UseCors();
 
+// 以此顺序映射端点：ChatLogEndpoints、FriendEndpoints、SessionEndpoints、ChatHub
 app.MapChatLogEndpoints();
 
 app.MapFriendEndpoints();
@@ -54,7 +55,7 @@ app.MapSessionEndpoints();
 
 app.MapHub<ChatHub>("/chatHub");
 
-// Seed database with initial data
+// 初始化数据库
 await DbInitializer.InitializeAsync(app);
 
 app.Run();

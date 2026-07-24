@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SASTCSharpFriendPartService.Models;
 
+/// <summary>
+/// 表示一个聊天记录（ChatLog）实体，包含与发送者（Sender）和会话（Session）相关的信息。
+/// </summary>
 [Table("ChatLogs")]
 public class ChatLog
 {

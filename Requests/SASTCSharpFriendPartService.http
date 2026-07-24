@@ -1,6 +1,6 @@
 @SASTCSharpFriendPartService_HostAddress = http://localhost:5019
 
-GET {{SASTCSharpFriendPartService_HostAddress}}/weatherforecast/
+GET {{SASTCSharpFriendPartService_HostAddress}}/api/Friend
 Accept: application/json
 
-###
+### 作为 GET 请求，获取朋友列表数据。
